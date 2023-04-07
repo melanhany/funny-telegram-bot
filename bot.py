@@ -8,7 +8,7 @@ from package.aggregation import aggregate_data
 
 def start(update: Update, context: CallbackContext):
     """Send a message when the command /start is issued."""
-    update.message.reply_text('Hi! Send me a JSON message with `start_date` and `end_date` fields.')
+    update.message.reply_text('Hi! Send me a JSON message.')
 
 def handle_json(update: Update, context: CallbackContext):
     """Handle incoming JSON messages and extract start_date and end_date."""
@@ -19,7 +19,7 @@ def handle_json(update: Update, context: CallbackContext):
 
         update.message.reply_text(data)
     except (KeyError, ValueError):
-        update.message.reply_text('Invalid JSON message format. Please include `start_date` and `end_date` fields in ISO format (e.g. "2022-04-06T12:00:00").')
+        update.message.reply_text('Невалидный запрос. Пример запроса: \n{"dt_from": "2022-09-01T00:00:00", "dt_upto": "2022-12-31T23:59:00", "group_type": "month"}')
 
 def main():
     """Start the bot."""
